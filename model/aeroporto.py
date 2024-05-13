@@ -7,7 +7,6 @@ class Aeroporto:
     _AEROPORTO: str
 
 
-
     @property
     def id(self):
         return self._ID

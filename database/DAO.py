@@ -1,5 +1,6 @@
 from database.DB_connect import DBConnect
 from model.aeroporto import Aeroporto
+from model.volo import Volo
 
 
 class DAO():
@@ -41,7 +42,7 @@ class DAO():
             return
         else:
             for row in cursor:
-                results.append(row)
+                results.append(Volo(row["ID"],  row["ORIGIN_AIRPORT_ID"], row["DESTINATION_AIRPORT_ID"], row["DISTANCE"]))
 
         cursor.close()
         cnx.close()

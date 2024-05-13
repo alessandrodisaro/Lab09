@@ -9,14 +9,14 @@ class Controller:
         self._model = model
 
     def handleAnalizza(self, e):
-        voli = self._model.getAeroportiDistanza(self._view._txtIn.value)
+        voli_distanza = self._model.buildGraphConDistanzaNormale(self._view._txtIn.value)
 
         self._view._txt_result.clean()
-        self._view._txt_result.controls.append(ft.Text("Ci sono ")) #  METTI QUANTI AEROPORTI CI SONO
-        self._view._txt_result.controls.append(ft.Text(f"Ci sono {len(voli)} voli di connessione tra questi "
+        self._view._txt_result.controls.append(ft.Text(f"Ci sono {self._model._grafo.number_of_nodes()} aeroporti")) #  METTI QUANTI AEROPORTI CI SONO
+        self._view._txt_result.controls.append(ft.Text(f"Ci sono {len(voli_distanza)} voli di connessione tra questi "
                                                        f"aeroporti"))
-        for volo in voli:
-            self._view._txt_result.controls.append(ft.Text(volo))
+        for volo in voli_distanza:
+            self._view._txt_result.controls.append(ft.Text(f"Volo da {volo[0]} a {volo[1]} con distanza: {volo[2]}"))
 
         self._view.update_page()
 
